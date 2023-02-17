@@ -27,7 +27,7 @@ By setting the test parameter to true, you can play arround with api:
 from companies_house_api_client import CompaniesHouse
 
 # Create a Companies House API client instance
-ch = CompaniesHouse(test=True)
+ch = CompaniesHouse()
 
 # Call an API method
 companies = ch.get_company_profile("12312312")
