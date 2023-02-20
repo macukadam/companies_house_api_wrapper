@@ -1,6 +1,5 @@
 """A very simple wrapper around Companies House api."""
 
-from enum import Enum
 import os
 import requests
 from dotenv import load_dotenv
@@ -8,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-class APIpaths(Enum):
+class APIpaths():
     """API paths for Companies House api."""
     company = 'company'
     officers = 'officers'
@@ -92,7 +91,7 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number)
+            "GET", APIpaths.company, company_number)
 
         return response
 
@@ -146,7 +145,7 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.advanced_company_search.value, **params)
+            "GET", APIpaths.advanced_company_search, **params)
 
         return response
 
@@ -167,7 +166,7 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.search_all.value, **params)
+            "GET", APIpaths.search_all, **params)
 
         return response
 
@@ -191,7 +190,7 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.search_companies.value, **params)
+            "GET", APIpaths.search_companies, **params)
 
         return response
 
@@ -213,7 +212,7 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.search_officers.value, **params)
+            "GET", APIpaths.search_officers, **params)
 
         return response
 
@@ -235,7 +234,7 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.search_disqualified_officers.value, **params)
+            "GET", APIpaths.search_disqualified_officers, **params)
 
         return response
 
@@ -260,7 +259,7 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.search_companies_alphabetically.value, **params)
+            "GET", APIpaths.search_companies_alphabetically, **params)
 
         return response
 
@@ -291,7 +290,7 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.search_dissolved_companies.value, **params)
+            "GET", APIpaths.search_dissolved_companies, **params)
 
         return response
 
@@ -332,8 +331,8 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.officers.value, **params)
+            "GET", APIpaths.company, company_number,
+            APIpaths.officers, **params)
 
         return response
 
@@ -349,9 +348,9 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.officers.value, officer_id,
-            APIpaths.appointments.value, appointment_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.officers, officer_id,
+            APIpaths.appointments, appointment_id)
 
         return response
 
@@ -364,8 +363,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.registers.value)
+            "GET", APIpaths.company, company_number,
+            APIpaths.registers)
 
         return response
 
@@ -377,8 +376,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.charges.value)
+            "GET", APIpaths.company, company_number,
+            APIpaths.charges)
 
         return response
 
@@ -391,8 +390,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            company_number, APIpaths.charges.value, charge_id)
+            "GET", APIpaths.company, company_number,
+            company_number, APIpaths.charges, charge_id)
 
         return response
 
@@ -415,8 +414,8 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.filing_history.value, **params)
+            "GET", APIpaths.company, company_number,
+            APIpaths.filing_history, **params)
 
         return response
 
@@ -430,8 +429,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.filing_history.value, transaction_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.filing_history, transaction_id)
 
         return response
 
@@ -443,8 +442,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.insolvency.value)
+            "GET", APIpaths.company, company_number,
+            APIpaths.insolvency)
 
         return response
 
@@ -456,8 +455,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.exemptions.value)
+            "GET", APIpaths.company, company_number,
+            APIpaths.exemptions)
 
         return response
 
@@ -469,8 +468,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.officers.value,
-            APIpaths.disqualifications_corporate.value, officer_id)
+            "GET", APIpaths.officers,
+            APIpaths.disqualifications_corporate, officer_id)
 
         return response
 
@@ -483,8 +482,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.officers.value,
-            APIpaths.disqualifications_natulal.value, officer_id)
+            "GET", APIpaths.officers,
+            APIpaths.disqualifications_natulal, officer_id)
 
         return response
 
@@ -504,8 +503,8 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.officers.value, officer_id,
-            APIpaths.appointments.value, **params)
+            "GET", APIpaths.officers, officer_id,
+            APIpaths.appointments, **params)
 
         return response
 
@@ -519,8 +518,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.uk_establishments.value)
+            "GET", APIpaths.company, company_number,
+            APIpaths.uk_establishments)
 
         return response
 
@@ -548,8 +547,8 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control.value, **params)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control, **params)
 
         return response
 
@@ -577,8 +576,8 @@ class CompaniesHouse:
         }
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control_statements.value, **params)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control_statements, **params)
 
         return response
 
@@ -592,8 +591,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control.value, super_secure_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control, super_secure_id)
 
         return response
 
@@ -607,8 +606,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.super_secure_beneficial_owner.value, super_secure_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.super_secure_beneficial_owner, super_secure_id)
 
         return response
 
@@ -623,8 +622,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control_statements.value,
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control_statements,
             statement_id)
 
         return response
@@ -639,9 +638,9 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control.value,
-            APIpaths.legal_person.value, psc_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control,
+            APIpaths.legal_person, psc_id)
 
         return response
 
@@ -655,9 +654,9 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control.value,
-            APIpaths.legal_person_beneficial_owner.value, psc_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control,
+            APIpaths.legal_person_beneficial_owner, psc_id)
 
         return response
 
@@ -671,9 +670,9 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control.value,
-            APIpaths.individual.value, psc_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control,
+            APIpaths.individual, psc_id)
 
         return response
 
@@ -687,9 +686,9 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control.value,
-            APIpaths.individual_beneficial_owner.value, psc_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control,
+            APIpaths.individual_beneficial_owner, psc_id)
 
         return response
 
@@ -703,9 +702,9 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control.value,
-            APIpaths.corporate_entity.value, psc_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control,
+            APIpaths.corporate_entity, psc_id)
 
         return response
 
@@ -719,8 +718,8 @@ class CompaniesHouse:
         """
 
         response = self.__send_request(
-            "GET", APIpaths.company.value, company_number,
-            APIpaths.persons_with_significant_control.value,
-            APIpaths.corporate_entity_beneficial_owner.value, psc_id)
+            "GET", APIpaths.company, company_number,
+            APIpaths.persons_with_significant_control,
+            APIpaths.corporate_entity_beneficial_owner, psc_id)
 
         return response
