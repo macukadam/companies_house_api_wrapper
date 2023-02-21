@@ -3,6 +3,7 @@
 import os
 import requests
 from dotenv import load_dotenv
+from typing import Optional
 
 load_dotenv()
 
@@ -96,19 +97,19 @@ class CompaniesHouse:
         return response
 
     def advanced_company_search(self,
-                                company_name_includes: str | None = None,
-                                company_name_excludes: str | None = None,
-                                company_status: str | None = None,
-                                company_subtype: str | None = None,
-                                company_type: str | None = None,
-                                dissolved_from: str | None = None,
-                                dissolved_to: str | None = None,
-                                incorporated_from: str | None = None,
-                                incorporated_to: str | None = None,
-                                location: str | None = None,
-                                sic_codes: str | None = None,
-                                size: int | None = None,
-                                start_index: int | None = None):
+                                company_name_includes: Optional[str] = None,
+                                company_name_excludes: Optional[str] = None,
+                                company_status: Optional[str] = None,
+                                company_subtype: Optional[str] = None,
+                                company_type: Optional[str] = None,
+                                dissolved_from: Optional[str] = None,
+                                dissolved_to: Optional[str] = None,
+                                incorporated_from: Optional[str] = None,
+                                incorporated_to: Optional[str] = None,
+                                location: Optional[str] = None,
+                                sic_codes: Optional[str] = None,
+                                size: Optional[int] = None,
+                                start_index: Optional[int] = None):
         """
         Perform an advanced search for companies using the Companies House API.
 
@@ -149,8 +150,8 @@ class CompaniesHouse:
 
         return response
 
-    def search_all(self, q: str, items_per_page: int | None = None,
-                   start_index: int | None = None) -> requests.Response:
+    def search_all(self, q: str, items_per_page: Optional[int] = None,
+                   start_index: Optional[int] = None) -> requests.Response:
         """
         Search companies, officers and disqualified officers
 
@@ -170,9 +171,9 @@ class CompaniesHouse:
 
         return response
 
-    def search_companies(self, q: str, items_per_page: int | None = None,
-                         start_index: int | None = None,
-                         restrictions: str | None = None) -> requests.Response:
+    def search_companies(self, q: str, items_per_page: Optional[int] = None,
+                         start_index: Optional[int] = None,
+                         restrictions: Optional[str] = None) -> requests.Response:
         """
         Search company information
 
@@ -194,8 +195,8 @@ class CompaniesHouse:
 
         return response
 
-    def search_officers(self, q: str, items_per_page: int | None = None,
-                        start_index: int | None = None) -> requests.Response:
+    def search_officers(self, q: str, items_per_page: Optional[int] = None,
+                        start_index: Optional[int] = None) -> requests.Response:
         """
         Search for officer information
 
@@ -216,8 +217,8 @@ class CompaniesHouse:
 
         return response
 
-    def search_disqualified_officers(self, q: str, items_per_page: int | None = None,
-                                     start_index: int | None = None) -> requests.Response:
+    def search_disqualified_officers(self, q: str, items_per_page: Optional[int] = None,
+                                     start_index: Optional[int] = None) -> requests.Response:
         """
         Search for disqualified officer information
 
@@ -239,9 +240,9 @@ class CompaniesHouse:
         return response
 
     def search_companies_alphabetically(self, q: str,
-                                        search_above: str | None = None,
-                                        search_below: str | None = None,
-                                        size: str | None = None) -> requests.Response:
+                                        search_above: Optional[str] = None,
+                                        search_below: Optional[str] = None,
+                                        size: Optional[str] = None) -> requests.Response:
         """
         Sends a GET request to the Companies House and returns the response.
 
@@ -264,11 +265,11 @@ class CompaniesHouse:
         return response
 
     def search_dissolved_companies(self, q: str,
-                                   search_type: str,
-                                   search_above: str | None = None,
-                                   search_below: str | None = None,
-                                   size: str | None = None,
-                                   start_index: int | None = None) -> requests.Response:
+                                   search_type: Optional[str],
+                                   search_above: Optional[str] = None,
+                                   search_below: Optional[str] = None,
+                                   size: Optional[str] = None,
+                                   start_index: Optional[int] = None) -> requests.Response:
         """
         Search for a dissolved company
 
@@ -295,11 +296,11 @@ class CompaniesHouse:
         return response
 
     def get_officers(self, company_number: str,
-                     items_per_page: int | None = None,
-                     register_type: str | None = None,
-                     register_view: str | None = None,
-                     start_index: int | None = None,
-                     order_by: str | None = None) -> requests.Response:
+                     items_per_page: Optional[int] = None,
+                     register_type: Optional[str] = None,
+                     register_view: Optional[str] = None,
+                     start_index: Optional[int] = None,
+                     order_by: Optional[str] = None) -> requests.Response:
         """
         Get officers for a company
 
@@ -396,9 +397,9 @@ class CompaniesHouse:
         return response
 
     def get_company_filing_history(self, company_number: str,
-                                   category: str | None = None,
-                                   items_per_page: int | None = None,
-                                   start_index: int | None = None) -> requests.Response:
+                                   category: Optional[str] = None,
+                                   items_per_page: Optional[int] = None,
+                                   start_index: Optional[int] = None) -> requests.Response:
         """
         Get the filing history list of a company
 
@@ -487,8 +488,8 @@ class CompaniesHouse:
 
         return response
 
-    def get_officer_appointments(self, officer_id: str, items_per_page: int | None = None,
-                                 start_index: int | None = None) -> requests.Response:
+    def get_officer_appointments(self, officer_id: str, items_per_page: Optional[int] = None,
+                                 start_index: Optional[int] = None) -> requests.Response:
         """
         Get a list of officer appointments
 
@@ -524,9 +525,9 @@ class CompaniesHouse:
         return response
 
     def get_persons_with_significant_control(self, company_number: str,
-                                             items_per_page: str | None = None,
-                                             start_index: str | None = None,
-                                             register_view: str | None = None) -> requests.Response:
+                                             items_per_page: Optional[str] = None,
+                                             start_index: Optional[str] = None,
+                                             register_view: Optional[str] = None) -> requests.Response:
         """
         Get a list of persons with significant control
 
@@ -553,9 +554,9 @@ class CompaniesHouse:
         return response
 
     def get_persons_with_significant_control_statements(self, company_number: str,
-                                                        items_per_page: str | None = None,
-                                                        start_index: str | None = None,
-                                                        register_view: str | None = None) -> requests.Response:
+                                                        items_per_page: Optional[str] = None,
+                                                        start_index: Optional[str] = None,
+                                                        register_view: Optional[str] = None) -> requests.Response:
         """
         Get a list of persons with significant control statements
 
@@ -582,7 +583,7 @@ class CompaniesHouse:
         return response
 
     def get_the_super_secure_person_with_significant_control(self, company_number: str,
-                                                             super_secure_id) -> requests.Response:
+                                                             super_secure_id: str) -> requests.Response:
         """
         Get details of a super secure person with significant control
 
@@ -597,7 +598,7 @@ class CompaniesHouse:
         return response
 
     def get_the_super_secure_beneficial_owner(self, company_number: str,
-                                              super_secure_id) -> requests.Response:
+                                              super_secure_id: str) -> requests.Response:
         """
         Get details of a super secure person with significant control
 
