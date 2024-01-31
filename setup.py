@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="companies_house_api_client",
-    version="0.0.3",
+    version="0.0.4",
     author="Ugurcan Akpulat",
     description="Simple python wrapper for Companies House API",
     long_description=long_description,

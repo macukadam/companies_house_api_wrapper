@@ -369,7 +369,7 @@ class CompaniesHouse:
 
         return response
 
-    def get_comapany_charges(self, company_number: str) -> requests.Response:
+    def get_company_charges(self, company_number: str) -> requests.Response:
         """
         List of charges for a company.
 
